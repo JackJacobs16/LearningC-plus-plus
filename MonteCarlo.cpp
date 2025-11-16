@@ -1,3 +1,30 @@
+/*
+This file counts as my first completed C++ project, where I wrote a programme which estimates the price of European call options for a given strike price and time to expiry. 
+The function requires a csv file containing a column of strike prices and a column of times to expiry, and outputs a csv file containing the price estimate, and confidence interval for each (strike, expiry) pair. 
+The theory for this comes from chapter 21 of Hull's: Options, Futures, and Other Derivatives. I relied on a few extra sources, 
+which I have included in // comments in within the file where necessary - for example, the inverse standard normal cdf used to compute the quantiles for the confidence interval. 
+
+The sample paths are calculated using Euler-Maruyama simulation where the stock price dynamics follow the Black-Scholes model (under the risk-neutral distribution). 
+The risk-free rate, drift, number of sample paths, and number of steps are all global variables which can be altered by the user. There is also another global variable which decides what % confidence interval is wanted;
+by default I have set the parameter to obtain a 95% confidence interval. 
+
+NEXT STEPS:
+1. The file is very slow if you use a large number of steps for each sample path. I hope to learn about ways to optimise this, either through the method itself, or using tricks within C++ which speed up computations. 
+2. I also want to generalise this programme so that I can calculate price estimates for other derivatives such as put options, or even more exotic derivatives with more complex payoffs. 
+3. Furthermore, I want to be able to use Monte Carlo simulation for stock prices which don't follow a geometric Brownian motion. For example I want to next update the programme so that the user can decide which model the stock price should follow. 
+    I think I could do this with the help of OOP, once I have finished learning about it. 
+4. I want to also incorporate some other variance reduction techniques such as importance sampling, which can improve accuracy. 
+
+Overall, I am happy that I have been able to complete this project using the knowledge of C++ I have currently. 
+I view this project as an opportunity to revise some of the things I have already learnt, whilst also learn a bit more about some tricks, such as using different libraries. 
+I hope to continue improving my C++ knowledge so that I can complete more advanced projects in the future.
+*/
+
+
+
+
+
+
 #include<iostream>
 #include<cmath>
 #include<numeric>
@@ -253,4 +280,5 @@ void price_estimates_to_CSV(const std::vector<std::vector<float>> prices, const 
         }
     }
     outputData.close();
+
 }
